@@ -84,14 +84,31 @@
       radial-gradient(ellipse 50% 40% at 88% 85%, rgba(170,127,102,.3), transparent 60%),
       var(--mistyrose);
   }
-  .petal{
-    position:absolute;font-size:22px;opacity:.55;pointer-events:none;
-    animation:drift 14s ease-in-out infinite;
-  }
-  @keyframes drift{
-    0%,100%{transform:translateY(0) rotate(0deg);}
-    50%{transform:translateY(-22px) rotate(12deg);}
-  }
+ .petal{
+    position:absolute;
+    font-size:22px;
+    opacity:.55;
+    pointer-events:none;
+    animation: drift 6s ease-in-out infinite;
+}
+
+@keyframes drift {
+    0% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+    25% {
+        transform: translate(20px, -30px) rotate(15deg);
+    }
+    50% {
+        transform: translate(-20px, -60px) rotate(-15deg);
+    }
+    75% {
+        transform: translate(30px, -30px) rotate(10deg);
+    }
+    100% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+}
   #hero .pretitle{
     font-family:var(--script);font-size:26px;color:var(--sakura);margin-bottom:6px;
   }
