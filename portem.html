@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>[TU NOMBRE] — Portafolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&family=Caveat:wght@600;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --chocolate:#443025;
+    --aloewood:#7F5836;
+    --milktea:#AA7F66;
+    --sakura:#EC9C9D;
+    --mistyrose:#F5E4DF;
+    --cream:#FBF3EF;
+
+    --serif:'Fraunces', serif;
+    --script:'Caveat', cursive;
+    --body:'Quicksand', sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:var(--body);color:var(--chocolate);background:var(--cream);
+    overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none;}
+  ::selection{background:var(--sakura);color:var(--cream);}
+  img{max-width:100%;display:block;}
+
+  section{position:relative;width:100%;padding:130px 8vw;}
+
+  /* ---------- decorative "letter" & "polaroid" frames for editable content ---------- */
+  .letter-card{
+    position:relative;background:var(--cream);
+    border:1px solid rgba(127,88,54,.18);
+    border-radius:6px 26px 6px 26px;
+    padding:36px 38px 36px 44px;
+    box-shadow:0 14px 30px rgba(68,48,37,.09);
+  }
+  .letter-card::before{content:'🌿';position:absolute;top:-16px;left:-12px;font-size:32px;transform:rotate(-18deg);filter:drop-shadow(0 4px 6px rgba(68,48,37,.2));}
+  .letter-card::after{content:'🌸';position:absolute;bottom:-14px;right:-10px;font-size:26px;transform:rotate(12deg);filter:drop-shadow(0 4px 6px rgba(68,48,37,.2));}
+
+  .photo-frame{
+    position:relative;background:var(--cream);
+    padding:14px 14px 48px;border-radius:6px;
+    box-shadow:0 18px 36px rgba(68,48,37,.2);
+    transform:rotate(-3deg);
+  }
+  .photo-frame::before{
+    content:'';position:absolute;top:-15px;left:50%;transform:translateX(-50%) rotate(-6deg);
+    width:78px;height:28px;background:rgba(236,156,157,.6);border-radius:2px;
+    box-shadow:0 3px 6px rgba(68,48,37,.18);
+  }
+  .photo-frame .caption{
+    position:absolute;bottom:12px;left:0;right:0;text-align:center;
+    font-family:var(--script);font-size:19px;color:var(--aloewood);
+  }
+
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s ease;}
+  .reveal.in{opacity:1;transform:translateY(0);}
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:fixed;top:0;left:0;width:100%;z-index:50;
+    display:flex;justify-content:space-between;align-items:center;
+    padding:22px 6vw;background:rgba(251,243,239,.82);backdrop-filter:blur(6px);
+    border-bottom:1px solid rgba(127,88,54,.15);
+  }
+  nav .logo{font-family:var(--script);font-size:30px;color:var(--chocolate);}
+  nav ul{display:flex;gap:30px;list-style:none;}
+  nav ul li a{font-size:13px;letter-spacing:.04em;color:var(--aloewood);font-weight:600;transition:color .2s;}
+  nav ul li a:hover{color:var(--sakura);}
+  @media(max-width:760px){nav ul{display:none;}}
+
+  /* ---------- HERO ---------- */
+  #hero{
+    min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;
+    text-align:center;padding:0 6vw;position:relative;
+    background:
+      radial-gradient(ellipse 60% 45% at 15% 12%, rgba(236,156,157,.35), transparent 60%),
+      radial-gradient(ellipse 50% 40% at 88% 85%, rgba(170,127,102,.3), transparent 60%),
+      var(--mistyrose);
+  }
+  .petal{
+    position:absolute;font-size:22px;opacity:.55;pointer-events:none;
+    animation:drift 14s ease-in-out infinite;
+  }
+  @keyframes drift{
+    0%,100%{transform:translateY(0) rotate(0deg);}
+    50%{transform:translateY(-22px) rotate(12deg);}
+  }
+  #hero .pretitle{
+    font-family:var(--script);font-size:26px;color:var(--sakura);margin-bottom:6px;
+  }
+  #hero h1{
+    font-family:var(--serif);font-weight:600;
+    font-size:clamp(52px,11vw,128px);line-height:.98;color:var(--chocolate);
+    letter-spacing:-.01em;
+  }
+  #hero h1 em{font-style:italic;color:var(--sakura);font-weight:500;}
+  #hero .role-line{
+    margin-top:30px;font-size:14px;letter-spacing:.05em;font-weight:600;color:var(--aloewood);
+    display:flex;gap:10px;flex-wrap:wrap;justify-content:center;align-items:center;
+  }
+  #hero .role-line span:not(:last-child)::after{content:'🍓';margin-left:10px;font-size:11px;}
+  #hero .cta{
+    margin-top:44px;padding:15px 38px;background:var(--chocolate);color:var(--cream);
+    border-radius:50px;font-size:13px;font-weight:600;letter-spacing:.03em;
+    box-shadow:0 8px 24px rgba(68,48,37,.25);transition:.25s;
+  }
+  #hero .cta:hover{background:var(--sakura);transform:translateY(-2px);box-shadow:0 12px 28px rgba(236,156,157,.4);}
+  #hero .scroll-hint{position:absolute;bottom:34px;font-family:var(--script);font-size:18px;color:var(--aloewood);}
+
+  /* ---------- divider ---------- */
+  .divider{display:flex;justify-content:center;padding:0;margin-top:-1px;}
+  .divider svg{width:100%;height:44px;display:block;}
+
+  /* ---------- ABOUT ---------- */
+  #about{background:var(--cream);}
+  .about-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:70px;align-items:center;}
+  .about-photo{
+    aspect-ratio:3/4;border-radius:4px;
+    background:linear-gradient(155deg,var(--sakura) 0%, var(--milktea) 100%);
+    display:flex;align-items:center;justify-content:center;
+    font-size:13px;font-weight:600;color:rgba(251,243,239,.85);
+  }
+  .about-eyebrow{font-family:var(--script);font-size:24px;color:var(--sakura);margin-bottom:6px;}
+  .about-title{font-family:var(--serif);font-weight:600;font-size:clamp(38px,5vw,58px);color:var(--chocolate);margin-bottom:22px;}
+  .about-text{font-size:16px;line-height:1.85;color:var(--aloewood);max-width:54ch;font-weight:500;}
+  .about-copy{margin-bottom:38px;}
+  .stats{display:flex;gap:36px;flex-wrap:wrap;margin-bottom:38px;}
+  .stat b{display:block;font-family:var(--serif);font-size:28px;font-weight:600;color:var(--chocolate);}
+  .stat span{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--milktea);font-weight:600;}
+  .handle{display:inline-block;font-size:14px;font-weight:600;color:var(--cream);background:var(--sakura);padding:8px 18px;border-radius:30px;}
+
+  /* ---------- SERVICES ---------- */
+  #services{background:var(--chocolate);color:var(--cream);}
+  .eyebrow{font-family:var(--script);font-size:24px;color:var(--sakura);margin-bottom:8px;}
+  #services h2{font-family:var(--serif);font-weight:600;font-size:clamp(38px,5.5vw,64px);margin-bottom:50px;color:var(--cream);}
+  .service-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:22px;}
+  .service-card{
+    background:rgba(251,243,239,.06);border:1px solid rgba(251,243,239,.14);
+    border-radius:20px;padding:32px 26px;transition:.25s;
+  }
+  .service-card:hover{background:rgba(236,156,157,.12);border-color:var(--sakura);transform:translateY(-4px);}
+  .service-card .icon{font-size:26px;margin-bottom:16px;display:block;}
+  .service-card p{font-size:16px;font-weight:600;line-height:1.4;color:var(--mistyrose);}
+
+  /* ---------- PORTFOLIO ---------- */
+  #portfolio{background:var(--mistyrose);}
+  #portfolio .center{text-align:center;margin-bottom:50px;}
+  #portfolio h2{font-family:var(--serif);font-weight:600;font-size:clamp(36px,5.5vw,60px);color:var(--chocolate);}
+  .gallery{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:210px;gap:16px;}
+  .gallery .cell{
+    border-radius:18px;background:linear-gradient(150deg,var(--milktea),var(--aloewood));
+    display:flex;align-items:center;justify-content:center;
+    font-size:12px;font-weight:600;color:rgba(251,243,239,.85);position:relative;overflow:hidden;
+    transition:.3s;
+  }
+  .gallery .cell:hover{transform:scale(1.03);box-shadow:0 14px 30px rgba(68,48,37,.25);}
+  .gallery .cell.tall{grid-row:span 2;}
+  .gallery .cell::before{content:'🍓';position:absolute;top:14px;left:14px;font-size:14px;opacity:.75;filter:drop-shadow(0 2px 3px rgba(68,48,37,.3));}
+  @media(max-width:900px){.gallery{grid-template-columns:repeat(2,1fr);}}
+
+  /* ---------- BRANDS ---------- */
+  #brands{background:var(--sakura);color:var(--chocolate);text-align:center;}
+  #brands .eyebrow{color:var(--chocolate);}
+  #brands .big-number{font-family:var(--serif);font-weight:600;font-size:clamp(64px,13vw,160px);line-height:.9;}
+  #brands .big-number small{display:block;font-family:var(--body);font-weight:700;font-size:14px;letter-spacing:.05em;margin-top:16px;}
+  .brand-row{display:flex;flex-wrap:wrap;justify-content:center;gap:14px;margin-top:50px;}
+  .brand-chip{
+    padding:11px 24px;background:var(--cream);border-radius:30px;
+    font-size:12px;font-weight:600;color:var(--chocolate);
+  }
+
+  /* ---------- CONTACT ---------- */
+  #contact{background:var(--chocolate);text-align:center;color:var(--cream);}
+  #contact .eyebrow{color:var(--sakura);}
+  #contact h2{font-family:var(--serif);font-weight:600;font-size:clamp(40px,7vw,72px);margin-bottom:14px;}
+  #contact .sub{font-family:var(--script);font-size:26px;color:var(--sakura);margin-bottom:44px;display:block;}
+  #contact .email{
+    font-size:clamp(17px,2.6vw,24px);font-weight:600;display:inline-block;margin-bottom:44px;
+    border-bottom:2px solid var(--sakura);padding-bottom:6px;
+  }
+  .social-row{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;}
+  .social-row a{
+    font-size:13px;font-weight:600;padding:12px 26px;border:1px solid rgba(251,243,239,.3);
+    border-radius:30px;transition:.2s;
+  }
+  .social-row a:hover{background:var(--sakura);border-color:var(--sakura);color:var(--chocolate);}
+
+  footer{padding:26px 6vw;text-align:center;font-size:11px;color:var(--milktea);background:var(--chocolate);}
+
+  @media(max-width:760px){
+    section{padding:90px 6vw;}
+    .about-grid{grid-template-columns:1fr;gap:40px;}
+    .gallery{grid-template-columns:repeat(2,1fr);grid-auto-rows:170px;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">[tu nombre]</div>
+  <ul>
+    <li><a href="#about">sobre mí</a></li>
+    <li><a href="#services">colabora</a></li>
+    <li><a href="#portfolio">looks</a></li>
+    <li><a href="#brands">marcas</a></li>
+    <li><a href="#contact">contacto</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <span class="petal" style="top:14%;left:10%;">🌸</span>
+  <span class="petal" style="top:22%;right:12%;animation-delay:2s;">🍓</span>
+  <span class="petal" style="bottom:20%;left:16%;animation-delay:4s;">🌿</span>
+  <span class="petal" style="bottom:16%;right:9%;animation-delay:6s;">🌸</span>
+
+  <div class="pretitle">hola, soy</div>
+  <h1 >[Tu Nombre] <em>[Apellido]</em></h1>
+  <div class="role-line">
+    <span>maquillaje</span><span>skincare</span><span>lifestyle aesthetic</span>
+  </div>
+  <a href="#about" class="cta">conóceme ✨</a>
+  <span class="scroll-hint">desliza ↓</span>
+</section>
+
+<div class="divider">
+  <svg viewBox="0 0 1200 44" preserveAspectRatio="none"><path d="M0,22 Q150,0 300,22 T600,22 T900,22 T1200,22 V44 H0 Z" fill="#F5E4DF"/></svg>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid reveal">
+    <div class="photo-frame">
+      <div class="about-photo"><img src="https://scontent.ftam2-1.fna.fbcdn.net/v/t39.30808-6/680429926_122168345204823689_275779187164252363_n.jpg?stp=dst-jpg_tt6&cstp=mx2048x2048&ctp=s2048x2048&_nc_cat=107&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeHNIZBN5wu4Cbncz3v0Ia6JVUsFI4MMUHJVSwUjgwxQcjevwHC8_l7yv7NlGGUzlmNmttDRQvRWFNsbDlUx5DxM&_nc_ohc=m4fEVAmPsNwQ7kNvwF1VXVw&_nc_oc=AdqmON5RiokE2yLqpdfrsnx4WZA40oOd3V5iMI4qw2xIRO8MIw17jpBiPUJiWCOPNGfVCrG-mBqrzNqK9AGd8x0Y&_nc_zt=23&_nc_ht=scontent.ftam2-1.fna&_nc_gid=MLRuSkmsVfPjmFMoWwjEng&_nc_ss=7b2a8&oh=00_AQA1eRns-hEMeQMsEjO4y0djgfQFZjnP9B8pLayfVgoYQg&oe=6A5A080F" alt=""></div>
+      <span class="caption">mi rincón favorito 🌸</span>
+    </div>
+    <div>
+      <div class="about-eyebrow">sobre mí</div>
+      <div class="about-title">[Tu Nombre], 19</div>
+      <div class="letter-card about-copy">
+        <p class="about-text">
+          Hola, soy [Tu Nombre] 🌸 tengo 19 años y vivo en [ciudad]. Comparto contenido sobre maquillaje,
+          skincare y todo lo que me hace sentir bonita y en calma: mis plantas, mi rutina, mis fresas favoritas
+          y momentos aesthetic del día a día. Creo contenido auténtico, tierno y con mucho cuidado en cada detalle,
+          porque para mí el maquillaje también es una forma de arte y autocuidado.
+        </p>
+      </div>
+      <div class="stats">
+        <div class="stat"><b>[00k]</b><span>Instagram</span></div>
+        <div class="stat"><b>[00k]</b><span>TikTok</span></div>
+        <div class="stat"><b>[00k]</b><span>YouTube</span></div>
+      </div>
+      <div class="handle">@[tuusuario]</div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="eyebrow reveal">colaboraciones</div>
+  <h2 class="reveal">hagamos algo bonito juntas 🌷</h2>
+  <div class="service-grid reveal">
+    <div class="service-card"><span class="icon">💄</span><p>GRWM / tutorial de maquillaje</p></div>
+    <div class="service-card"><span class="icon">🧴</span><p>Reseña de producto</p></div>
+    <div class="service-card"><span class="icon">🌿</span><p>Rutina de skincare</p></div>
+    <div class="service-card"><span class="icon">📦</span><p>Unboxing</p></div>
+    <div class="service-card"><span class="icon">🍓</span><p>Día en mi vida aesthetic</p></div>
+    <div class="service-card"><span class="icon">✨</span><p>[Otro tipo de contenido]</p></div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio">
+  <div class="center reveal">
+    <h2>mis looks favoritos</h2>
+  </div>
+  <div class="gallery reveal">
+    <div class="cell tall"><span>look 1</span></div>
+    <div class="cell"><span>look 2</span></div>
+    <div class="cell"><span>look 3</span></div>
+    <div class="cell tall"><span>look 4</span></div>
+    <div class="cell"><span>look 5</span></div>
+    <div class="cell"><span>look 6</span></div>
+    <div class="cell tall"><span>look 7</span></div>
+    <div class="cell"><span>look 8</span></div>
+  </div>
+</section>
+
+<!-- BRANDS -->
+<section id="brands">
+  <div class="eyebrow reveal">marcas</div>
+  <div class="big-number reveal">+[00]<small>marcas con las que he colaborado</small></div>
+  <div class="brand-row reveal">
+    <div class="brand-chip">[Marca 1]</div>
+    <div class="brand-chip">[Marca 2]</div>
+    <div class="brand-chip">[Marca 3]</div>
+    <div class="brand-chip">[Marca 4]</div>
+    <div class="brand-chip">[Marca 5]</div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="eyebrow">hablemos</div>
+  <h2>trabajemos</h2>
+  <span class="sub">juntas 🍓</span>
+  <a class="email" href="mailto:tu@correo.com">tu@correo.com</a>
+  <div class="social-row">
+    <a href="#">Instagram</a>
+    <a href="#">TikTok</a>
+    <a href="#">YouTube</a>
+  </div>
+</section>
+
+<footer>© [Tu Nombre] — portafolio [año] · hecho con 🍓 y mucho aesthetic</footer>
+
+<script>
+  const els = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); } });
+  },{threshold:.15});
+  els.forEach(el=>io.observe(el));
+</script>
+
+</body>
+</html>
