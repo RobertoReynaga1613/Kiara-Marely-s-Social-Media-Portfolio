@@ -73,12 +73,15 @@
   nav ul{display:flex;gap:30px;list-style:none;}
   nav ul li a{font-size:13px;letter-spacing:.04em;color:var(--aloewood);font-weight:600;transition:color .2s;}
   nav ul li a:hover{color:var(--sakura);}
-  @media(max-width:760px){nav ul{display:none;}}
+  @media(max-width:760px){
+    nav ul{gap:14px 18px;flex-wrap:wrap;justify-content:center;}
+    nav{flex-direction:column;gap:12px;padding:16px 6vw;}
+  }
 
   /* ---------- HERO ---------- */
   #hero{
     min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;
-    text-align:center;padding:0 6vw;position:relative;
+    text-align:center;padding:0 6vw;position:relative;z-index:0;
     background:
       radial-gradient(ellipse 60% 45% at 15% 12%, rgba(236,156,157,.35), transparent 60%),
       radial-gradient(ellipse 50% 40% at 88% 85%, rgba(170,127,102,.3), transparent 60%),
@@ -139,11 +142,12 @@
   #about{background:var(--cream);}
   .about-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:70px;align-items:center;}
   .about-photo{
-    aspect-ratio:3/4;border-radius:4px;
+    aspect-ratio:3/4;border-radius:4px;overflow:hidden;
     background:linear-gradient(155deg,var(--sakura) 0%, var(--milktea) 100%);
     display:flex;align-items:center;justify-content:center;
     font-size:13px;font-weight:600;color:rgba(251,243,239,.85);
   }
+  .about-photo img{width:100%;height:100%;object-fit:cover;}
   .about-eyebrow{font-family:var(--script);font-size:24px;color:var(--sakura);margin-bottom:6px;}
   .about-title{font-family:var(--serif);font-weight:600;font-size:clamp(38px,5vw,58px);color:var(--chocolate);margin-bottom:22px;}
   .about-text{font-size:16px;line-height:1.85;color:var(--aloewood);max-width:54ch;font-weight:500;}
@@ -221,6 +225,22 @@
     width: 80vw;
     max-width: 550px;
 }
+
+  .flank-photo{
+    position:absolute;top:0;height:100%;
+    width:auto;
+    object-fit:contain;
+    z-index:-1;
+  }
+  .flank-photo.left{left:-6vw;}
+  .flank-photo.right{right:-6vw;}
+
+  @media(prefers-reduced-motion: reduce){
+
+    .petal{animation:none;}
+    .reveal{transition:none;opacity:1;transform:none;}
+    html{scroll-behavior:auto;}
+  }
 </style>
 </head>
 <body>
@@ -238,6 +258,9 @@
 
 <!-- HERO -->
 <section id="hero">
+  <img class="flank-photo left" src="par01.png" alt="">
+  <img class="flank-photo right" src="par02.png" alt="">
+
   <span class="petal" style="top:14%;left:10%;">🌸</span>
   <span class="petal" style="top:22%;right:12%;animation-delay:2s;">🍓</span>
   <span class="petal" style="bottom:20%;left:16%;animation-delay:4s;">🌿</span>
@@ -246,7 +269,7 @@
   <div class="pretitle">hola, soy</div>
   <div class="logo">
     <img src="KiaraZavalaLogo.png" alt="Kiara Zavala Logo">
-</div>
+  </div>
   <div class="role-line">
     <span>maquillaje</span><span>skincare</span><span>lifestyle</span>
   </div>
@@ -262,7 +285,7 @@
 <section id="about">
   <div class="about-grid reveal">
     <div class="photo-frame">
-      <div class="about-photo"><img src="https://scontent.ftam2-1.fna.fbcdn.net/v/t39.30808-6/680429926_122168345204823689_275779187164252363_n.jpg?stp=dst-jpg_tt6&cstp=mx2048x2048&ctp=s2048x2048&_nc_cat=107&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeHNIZBN5wu4Cbncz3v0Ia6JVUsFI4MMUHJVSwUjgwxQcjevwHC8_l7yv7NlGGUzlmNmttDRQvRWFNsbDlUx5DxM&_nc_ohc=m4fEVAmPsNwQ7kNvwF1VXVw&_nc_oc=AdqmON5RiokE2yLqpdfrsnx4WZA40oOd3V5iMI4qw2xIRO8MIw17jpBiPUJiWCOPNGfVCrG-mBqrzNqK9AGd8x0Y&_nc_zt=23&_nc_ht=scontent.ftam2-1.fna&_nc_gid=MLRuSkmsVfPjmFMoWwjEng&_nc_ss=7b2a8&oh=00_AQA1eRns-hEMeQMsEjO4y0djgfQFZjnP9B8pLayfVgoYQg&oe=6A5A080F" alt=""></div>
+      <div class="about-photo"><img src="https://scontent.ftam2-1.fna.fbcdn.net/v/t39.30808-6/680429926_122168345204823689_275779187164252363_n.jpg?stp=dst-jpg_tt6&cstp=mx2048x2048&ctp=s2048x2048&_nc_cat=107&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeHNIZBN5wu4Cbncz3v0Ia6JVUsFI4MMUHJVSwUjgwxQcjevwHC8_l7yv7NlGGUzlmNmttDRQvRWFNsbDlUx5DxM&_nc_ohc=m4fEVAmPsNwQ7kNvwF1VXVw&_nc_oc=AdqmON5RiokE2yLqpdfrsnx4WZA40oOd3V5iMI4qw2xIRO8MIw17jpBiPUJiWCOPNGfVCrG-mBqrzNqK9AGd8x0Y&_nc_zt=23&_nc_ht=scontent.ftam2-1.fna&_nc_gid=MLRuSkmsVfPjmFMoWwjEng&_nc_ss=7b2a8&oh=00_AQA1eRns-hEMeQMsEjO4y0djgfQFZjnP9B8pLayfVgoYQg&oe=6A5A080F" alt="Kiara Zavala en su rincón favorito" loading="lazy"></div>
       <span class="caption">mi rincón favorito 🌸</span>
     </div>
     <div>
@@ -283,10 +306,18 @@
       <div class="handle">@[frexx.ye]</div>
     </div>
   </div>
+  <span class="petal" style="top:8%;right:6%;animation-delay:1s;">🌸</span>
+  <span class="petal" style="bottom:6%;left:4%;animation-delay:3s;">🍓</span>
 </section>
 
+<div class="divider">
+  <svg viewBox="0 0 1200 44" preserveAspectRatio="none"><path d="M0,22 Q150,44 300,22 T600,22 T900,22 T1200,22 V44 H0 Z" fill="#FBF3EF"/></svg>
+</div>
+
 <!-- SERVICES -->
-<section id="services">
+<section id="services" style="position:relative;">
+  <span class="petal" style="top:10%;left:5%;animation-delay:0.5s;">🌿</span>
+  <span class="petal" style="bottom:10%;right:6%;animation-delay:2.5s;">🌸</span>
   <div class="eyebrow reveal">colaboraciones</div>
   <h2 class="reveal">hagamos algo bonito juntas 🌷</h2>
   <div class="service-grid reveal">
@@ -299,8 +330,14 @@
   </div>
 </section>
 
+<div class="divider">
+  <svg viewBox="0 0 1200 44" preserveAspectRatio="none"><path d="M0,22 Q150,0 300,22 T600,22 T900,22 T1200,22 V44 H0 Z" fill="#443025"/></svg>
+</div>
+
 <!-- PORTFOLIO -->
 <section id="portfolio">
+  <span class="petal" style="top:8%;left:6%;animation-delay:1.5s;">🍓</span>
+  <span class="petal" style="top:12%;right:8%;animation-delay:4s;">🌸</span>
   <div class="center reveal">
     <h2>mis looks favoritos</h2>
   </div>
@@ -316,8 +353,14 @@
   </div>
 </section>
 
+<div class="divider">
+  <svg viewBox="0 0 1200 44" preserveAspectRatio="none"><path d="M0,22 Q150,44 300,22 T600,22 T900,22 T1200,22 V44 H0 Z" fill="#F5E4DF"/></svg>
+</div>
+
 <!-- BRANDS -->
 <section id="brands">
+  <span class="petal" style="top:10%;left:8%;animation-delay:1s;">🌸</span>
+  <span class="petal" style="bottom:14%;right:7%;animation-delay:3.5s;">🌿</span>
   <div class="eyebrow reveal">marcas</div>
   <div class="big-number reveal">+[00]<small>marcas con las que he colaborado</small></div>
   <div class="brand-row reveal">
@@ -329,8 +372,14 @@
   </div>
 </section>
 
+<div class="divider">
+  <svg viewBox="0 0 1200 44" preserveAspectRatio="none"><path d="M0,22 Q150,0 300,22 T600,22 T900,22 T1200,22 V44 H0 Z" fill="#EC9C9D"/></svg>
+</div>
+
 <!-- CONTACT -->
 <section id="contact">
+  <span class="petal" style="top:10%;left:10%;animation-delay:2s;">🍓</span>
+  <span class="petal" style="top:14%;right:9%;animation-delay:5s;">🌸</span>
   <div class="eyebrow">hablemos</div>
   <h2>trabajemos</h2>
   <span class="sub">juntas 🍓</span>
